@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Search</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="css/jquery-ui.min.css">
+<link rel="stylesheet" href="css/styles.css">
+<script  type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script  type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script  type="text/javascript" src="js/moment.min.js"></script>
+<script  type="text/javascript" src="js/bootstrap.js"></script>
+<script  type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+			<script type="text/javascript">
+            $(function () {
+             $('#datetimepicker_st_dt').datetimepicker();
+			 
+			     $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 45,
+      values: [ 0, 45 ],
+      slide: function( event, ui ) {
+        $( "#duration_val" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+      }
+    });
+    $( "#duration_val" ).val( $( "#slider-range" ).slider( "values", 0 ) +
+      " - " + $( "#slider-range" ).slider( "values", 1 ) );
+            });
+			
+        </script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="pull-left navbar-toggle" data-toggle="collapse" data-target="#filterBar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Logo</a>
+		</div>
+		<div class="collapse navbar-collapse" id="myNavbar">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="#">Projects</a></li>
+				<li><a href="#">Contact</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<div class="container-fluid">
+<div class="sidenav-left col-sm-2 collapse navbar-collapse" id="filterBar">
+			<div class="left_nav_label left_search_nav">
+				 <label >Start Date</label>
+			</div>
+			<div class='input-group date left_search_nav'>
+                    <input type='text' class="datetimepicker_st_dt_class" id="datetimepicker_st_dt" />
+					<select class="flex_time_avail_class">
+                      <option value="">Flexibility</option>
+                      <option value="1">± 1 day</option>
+                      <option value="7">± 7 days</option>
+                      <option value="14">± 14 days</option>
+                      <option value="30">± 30 days</option>
+                    </select>
+            </div>
+			<div class="left_nav_label left_search_nav">
+				 <label >Duration</label>
+				 <input type="text" id="duration_val" readonly style="border:0; width:100px;color:#f6931f; font-weight:bold;">
+			</div>
+			<div  class="left_search_nav">
+				  <div id="slider-range"></div>
+			</div>
+</div>
+	<div class="text-center col-sm-10">
+				<h1>Welcome</h1>
+				<hr>
+				<h3>Test</h3>
+	
+	</div>
+
+	</div>	
+<footer class="container-fluid text-center footer">
+	<p>Footer Text</p>
+</footer>
+
+</body>
+</html>
