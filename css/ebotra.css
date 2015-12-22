@@ -1,0 +1,36 @@
+.headerPanel
+{
+  background:url(../resources/musafirBG.jpg) no-repeat center top scroll;
+  background-size: 100% auto;
+  padding-bottom: 50%;
+}
+
+.headerPanelContent
+{
+  padding: 50px 0 15px;
+  text-align: center;
+}
+
+.searchPlacesText
+{
+  background: transparent;
+  border: none;
+  font-size: 56px;
+  color: #fff;
+  letter-spacing: -1px;
+  margin: 0 auto 5px;
+  text-align: center;
+  width: 614px;
+  display: block;
+
+}
+
+.searchPlacesTextDivider
+{
+  color: #ff8d00;
+  background-color: #ff8d00;
+  border: none;
+  display: block;
+  height: 4px;
+  width: 614px;
+}

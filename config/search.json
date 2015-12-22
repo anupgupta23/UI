@@ -1,0 +1,27 @@
+{
+	"startDateLabel": "Start Date",
+	"flexibilityDDLabel" : "Flexibility",
+	"flexibilityDDData":[["1","± 1 day"],["7","± 7 day"],["15","± 15 day"],["30","± 30 day"]],
+	"durationRange":[0,45],
+	"durationSelection":[0,45],
+	"budgetRange":[5000,500000],
+	"budgetSelection":[10000,100000],
+	"filters":{
+		"destnation":{
+			"label" : "Destination",
+			"values":["Australia","Malaysia","Singapore","Thailand","New zealand"]
+		},
+		"travelWith":{
+			"label" : "Travel with",
+			"values":["Solo","Couple","Family","Friends","Only girls","Honeymoon"]
+		},
+		"type":{
+			"label" : "Travel Style",
+			"values":["Active","Comfort","Luxury","Local Living","Secluded"]
+		},
+		"prefrences":{
+			"label" : "Activity",
+			"values":["Adventurous","Shopping","Cities expereince","Wildlife","Nature","Foodie","Nightlife"]
+		}
+	}
+}

@@ -1,0 +1,59 @@
+.left_nav_label label
+{
+   font-weight:100;
+ }
+ 
+ .left_search_nav
+ {
+  padding:5px;
+  }
+ 
+ .datetimepicker_st_dt_class
+ {
+ width:90px;
+ }
+ .flex_time_avail_class
+ {
+    width:80px;
+    height:27px;
+  }
+
+  .range_val_class
+  {
+  	border: none;
+  	background: transparent;
+  	width:150px;
+  }
+
+   .slider_range_class .ui-widget-header
+  {
+  	background: #d4d4d4 none repeat scroll 0 0;
+  }
+
+  .left_search_filters_class .ui-state-default
+  {
+    background: transparent;
+    border: none;
+    color: #000;
+    font-weight: 100;
+  }
+
+  .filter_checkboxes_label
+  {
+    font-weight: 100;
+    margin-bottom: 0px;
+  }
+
+  #accordion a span.title {
+    float: left;
+    display: block;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#accordion a span.ui-icon {
+    position: static;   
+    height: 20px;
+    margin-top: 0px; 
+    margin-top: 3px;
+}

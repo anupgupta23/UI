@@ -8,29 +8,15 @@
 <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
 <link rel="stylesheet" href="css/jquery-ui.min.css">
 <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/search.css">
 <script  type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
 <script  type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script  type="text/javascript" src="js/moment.min.js"></script>
 <script  type="text/javascript" src="js/bootstrap.js"></script>
 <script  type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
-			<script type="text/javascript">
-            $(function () {
-             $('#datetimepicker_st_dt').datetimepicker();
-			 
-			     $( "#slider-range" ).slider({
-      range: true,
-      min: 0,
-      max: 45,
-      values: [ 0, 45 ],
-      slide: function( event, ui ) {
-        $( "#duration_val" ).val(  ui.values[ 0 ] + " - " + ui.values[ 1 ] );
-      }
-    });
-    $( "#duration_val" ).val( $( "#slider-range" ).slider( "values", 0 ) +
-      " - " + $( "#slider-range" ).slider( "values", 1 ) );
-            });
-			
-        </script>
+<script type="text/javascript" src="js/search.json"></script>
+<script type="text/javascript" src="js/configManager.js"></script>
+<script type="text/javascript" src="js/search.js"></script>
 </head>
 <body>
 
@@ -64,7 +50,7 @@
 </nav>
 
 <div class="container-fluid">
-<div class="sidenav-left col-sm-2 collapse navbar-collapse" id="filterBar">
+<div class="sidenav-left col-sm-3 collapse navbar-collapse" id="filterBar">
 			<div class="left_nav_label left_search_nav">
 				 <label >Start Date</label>
 			</div>
@@ -80,13 +66,24 @@
             </div>
 			<div class="left_nav_label left_search_nav">
 				 <label >Duration</label>
-				 <input type="text" id="duration_val" readonly style="border:0; width:100px;color:#f6931f; font-weight:bold;">
+				 <input type="text" id="duration_val" class="range_val_class" readonly >
 			</div>
 			<div  class="left_search_nav">
-				  <div id="slider-range"></div>
+				  <div id="duration_slider_range" class="slider_range_class"></div>
+			</div>
+
+			<div class="left_nav_label left_search_nav">
+				 <label >Budget</label>
+				 <input type="text" id="budget_range_val" class="range_val_class" readonly >
+			</div>
+
+			<div  class="left_search_nav">
+				  <div id="budget_slider_range" class="slider_range_class"></div>
+			</div>
+			<div  id="left_search_filters" class="left_search_filters_class left_search_nav">
 			</div>
 </div>
-	<div class="text-center col-sm-10">
+	<div class="text-center col-sm-9">
 				<h1>Welcome</h1>
 				<hr>
 				<h3>Test</h3>
