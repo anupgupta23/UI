@@ -65,7 +65,11 @@
 	  			$("#left_search_filters").append("<h3>"+filterData[key]["label"]+"</h3>");
 	  		    $("#left_search_filters").append($filterDiv);
 	  		}
-	  		$("#left_search_filters").accordion({collapsible : true, active : 'none',heightStyle: "content"});
+	  		var icons = {
+     			header: "ui-icon-circle-arrow-e",
+      			activeHeader: "ui-icon-circle-arrow-s"
+		    };
+			 $("#left_search_filters").accordion({collapsible : true, active : 'none',heightStyle: "content",icons:icons});
 		});
 
   }

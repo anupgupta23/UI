@@ -44,16 +44,16 @@
     margin-bottom: 0px;
   }
 
-  #accordion a span.title {
-    float: left;
-    display: block;
-    margin-right: 10px;
-    margin-top: 5px;
+ .ui-accordion .ui-accordion-header .ui-icon 
+ {
+  position: absolute;
+  left: 100%;
+  margin-left: -30px;
+  top: 50%;
+  margin-top: -8px;
+
 }
 
-#accordion a span.ui-icon {
-    position: static;   
-    height: 20px;
-    margin-top: 0px; 
-    margin-top: 3px;
+.ui-accordion .ui-accordion-icons {
+    padding-left: 0em;
 }
