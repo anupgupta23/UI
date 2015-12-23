@@ -16,6 +16,7 @@
 <script  type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="js/search.json"></script>
 <script type="text/javascript" src="js/configManager.js"></script>
+<script type="text/javascript" src="js/communicationLine.js"></script>
 <script type="text/javascript" src="js/search.js"></script>
 </head>
 <body>
@@ -53,6 +54,7 @@
 <div class="sidenav-left col-sm-3 collapse navbar-collapse" id="filterBar">
 			<div class="left_nav_label left_search_nav">
 				 <label >Start Date</label>
+				 <button type="button" id="filter_apply" class="btn btn-primary pull-right filter_btn_class">Apply</button>
 			</div>
 			<div class='input-group date left_search_nav'>
                     <input type='text' class="datetimepicker_st_dt_class" id="datetimepicker_st_dt" />
@@ -84,10 +86,10 @@
 			</div>
 </div>
 	<div class="text-center col-sm-9">
-				<h1>Welcome</h1>
-				<hr>
-				<h3>Test</h3>
-	
+		
+			<div id="package_display" class="row clearfix">
+			</div>
+		
 	</div>
 
 	</div>	

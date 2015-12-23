@@ -1,0 +1,39 @@
+{
+	"packages":{
+		"australia":{
+			"destination":"Australia",
+			"displayImg":"offline/australia.jpg",
+			"displayMapImg":"offline/australiaMap.png",
+			"label":"Australia Tour",
+			"budget":"₹300000"
+		},
+		"thailand":{
+			"destination":"Thailand",
+			"displayImg":"offline/thailand.jpg",
+			"displayMapImg":"offline/thailandMap.png",
+			"label":"Thailand Tour",
+			"budget":"₹50000"
+		},
+		"new_zealand":{
+			"destination":"New Zealand",
+			"displayImg":"offline/new_zealand.jpg",
+			"displayMapImg":"offline/new_zealandMap.png",
+			"label":"New Zealand Tour",
+			"budget":"₹200000"
+		},
+		"malaysia":{
+			"destination":"Malaysia",
+			"displayImg":"offline/malaysia.jpg",
+			"displayMapImg":"offline/malaysiaMap.png",
+			"label":"Malaysia Tour",
+			"budget":"₹60000"
+		},
+		"singapore":{
+			"destination":"Singapore",
+			"displayImg":"offline/singapore.jpg",
+			"displayMapImg":"offline/singaporeMap.png",
+			"label":"Singapore Tour",
+			"budget":"₹40000"
+		}
+	}
+}

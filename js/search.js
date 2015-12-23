@@ -1,6 +1,7 @@
   $(function() {
    
    init();
+   COMMUNICATIONLINES.applyFilters({},onReceiveData);
     
   });
 
@@ -71,8 +72,48 @@
 	  			// $("#left_search_filters").append("<h3>"+filterData[key]["label"]+"</h3>");
 	  		    $("#left_search_filters").append($masterDiv);
 	  		}
+
+	  		// apply button initialization
+	  		 $('#filter_apply').on('click', function(e){
+	  		 	COMMUNICATIONLINES.applyFilters({},onReceiveData);
+	  		 }
+	  		 );
 		});
 
+  }
+
+  var onReceiveData = function(filterData)
+  {
+  	if(filterData != undefined)
+  	{
+  		for(var packageKey in filterData)
+  		{
+  			if(packageKey != undefined)
+  			{
+  				var $imageDiv = createPackageDiv(packageKey,filterData[packageKey]);
+  				$('#package_display').append($imageDiv);
+  			}
+  		}
+  	}
+  }
+
+  var createPackageDiv = function(key,data)
+  {
+  	var $pkgDiv = $("<div/>",{class:" col-sm-4 col-md-4 col-xs-12 panel panel-default package_div_class"});
+  	var $headerDiv = $("<div/>",{class:"panel-heading"});
+  	var $bodyDiv = $("<div/>",{class:"panel-body"});
+  	var $footer = $("<div/>",{class:"panel-footer"});
+  	var $bodyImg =$("<img/>",{alt:data["label"],src:data["displayMapImg"],class:"package_div_disp_img_class"});
+  	var $labelName = $("<label/>",{text:data["label"],class:"left_search_nav"});
+  	var $budget = $("<label/>",{text:data["budget"],class:"pull-right left_search_nav"});
+  	$headerDiv.append(data["destination"]);
+  	$bodyDiv.append($bodyImg);
+  	$footer.append($labelName);
+  	$footer.append($budget);
+  	$pkgDiv.append($headerDiv);
+	$pkgDiv.append($bodyDiv);
+	$pkgDiv.append($footer);
+	return $pkgDiv;
   }
 
   var createHeaderDiv = function(key,label)
