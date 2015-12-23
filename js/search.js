@@ -86,6 +86,7 @@
   {
   	if(filterData != undefined)
   	{
+  		$('#package_display').empty();
   		for(var packageKey in filterData)
   		{
   			if(packageKey != undefined)
