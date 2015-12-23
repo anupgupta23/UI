@@ -58,35 +58,58 @@
 		    $( "#budget_range_val" ).val("₹" + $( "#budget_slider_range" ).slider( "values", 0 ) +
 		      " to " +"₹" + $( "#budget_slider_range" ).slider( "values", 1 ) + suffix);
 		    //filters initialization
+		    $('#left_search_filters').on('hidden.bs.collapse', toggleChevron);
+			$('#left_search_filters').on('shown.bs.collapse', toggleChevron);
 	  		var filterData = retreiveConfigData(data,"filters");
 	  		for(var key in filterData)
 	  		{
 	  			var $filterDiv = createCHeckboxesDiv(key,filterData[key]["values"]);
-	  			$("#left_search_filters").append("<h3>"+filterData[key]["label"]+"</h3>");
-	  		    $("#left_search_filters").append($filterDiv);
+	  			var $headerDiv = createHeaderDiv(key,filterData[key]["label"]);
+	  			var $masterDiv = $("<div/>");
+	  			$masterDiv.append($headerDiv);
+	  			$masterDiv.append($filterDiv);
+	  			// $("#left_search_filters").append("<h3>"+filterData[key]["label"]+"</h3>");
+	  		    $("#left_search_filters").append($masterDiv);
 	  		}
-	  		var icons = {
-     			header: "ui-icon-circle-arrow-e",
-      			activeHeader: "ui-icon-circle-arrow-s"
-		    };
-			 $("#left_search_filters").accordion({collapsible : true, active : 'none',heightStyle: "content",icons:icons});
 		});
 
   }
 
+  var createHeaderDiv = function(key,label)
+  {
+  	var $headerDiv = $("<div/>",{class:"search_filter_heading"});
+  	var $h6 = $("<h5/>",{class:"filter_search_header_class"});
+  	var $a = $("<a/>",{class:"accordion-toggle","data-toggle":"collapse", "data-parent":"#left_search_filters", "href":"#"+key+"_div"});
+  	$a.append(label);
+  	var $i = $("<i/>",{ class:"indicator glyphicon glyphicon-chevron-down  pull-right"});
+  	var $hr = $("<hr>",{class:"filter_search_hr_class"});
+  	$h6.append($a);
+  	$h6.append($i);
+  	$headerDiv.append($h6);
+  	$headerDiv.append($hr);
+
+  	return $headerDiv;
+  }
+
   var createCHeckboxesDiv = function(id,data)
   {
-  	var $outerDiv = $("<div/>");
-  	var $mainDiv = $("<div/>",{id:id+"_div",class:"filter_checkboxes_div"});
+
+  	var $mainDiv = $("<div/>",{id:id+"_div",class:"filter_checkboxes_div collapse"});
   	for(var index=0;index<data.length;index++)
   	{
   		var $chbx = $("<input/>",{id:id + index,class:"left_nav_label",type:"checkbox"});
   		var $lbl = $("<label/>",{class:"left_search_nav filter_checkboxes_label",text:data[index]});
-  		var $chbxlbldiv  = $("<div/>");
+  		var $chbxlbldiv  = $("<div/>",{class:"filter_search_chbxdiv_class"});
   		$chbxlbldiv.append($chbx);
   		$chbxlbldiv.append($lbl);
   		$mainDiv.append($chbxlbldiv);
-  		$outerDiv.append($mainDiv);
   	}
-  	return $outerDiv;
+  	return $mainDiv;
   }
+
+   var toggleChevron = function(e) {
+    $(e.target)
+        .prev('.search_filter_heading')
+        .find("i.indicator")
+        .toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+}
