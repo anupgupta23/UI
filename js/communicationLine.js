@@ -17,39 +17,62 @@ var COMMUNICATIONLINES =
 				$.getJSON('offline/offlineData.json','application/json',function(data)
 				{
 					COMMUNICATIONLINES.offlineData = data;
-					COMMUNICATIONLINES.handleResult('offline',data);
+					COMMUNICATIONLINES.handleResult('offline','filter',$.extend(true,{},COMMUNICATIONLINES.offlineData));
 				});
 			}
 		});
 	},
-	getOffline:function(params,callType)
+	executeFilter:function(data,filterMap)
 	{
-		if(COMMUNICATIONLINES.offlineData != undefined && 'packages' in COMMUNICATIONLINES.offlineData)
+		var newData = data;
+		if(data!= undefined && filterMap != undefined)
 		{
-			return COMMUNICATIONLINES.offlineData['packages'];
+			for(pckgID in data)
+			{
+				if(pckgID != undefined)
+				{
+					var packData = data[pckgID];
+					if("budget" in filterMap)
+					{
+						var budArr = filterMap["budget"];
+						var minBudget = budArr[0];
+						var maxBudget = budArr[1];
+						if(packData["budgetVal"] > maxBudget || packData["budgetVal"] < minBudget)
+						{
+							delete newData[pckgID];
+							continue;
+						}
+					}
+				}
+			}
 		}
+		return newData;
 	},
 	applyFilters:function(params,callback)
 	{
 		if(COMMUNICATIONLINES.isOffline)
 		{
+			COMMUNICATIONLINES.callbackHandler[params["id"]] = [params,callback];
 			if(COMMUNICATIONLINES.offlineData != undefined)
 			{
-				var data =  COMMUNICATIONLINES.getOffline(params,'filter');
-				callback(data);	
-			}
-			else
-			{
-				COMMUNICATIONLINES.callbackHandler[params["id"]] = [params,callback];
+				COMMUNICATIONLINES.handleResult(params["id"],'filter',$.extend(true,{},COMMUNICATIONLINES.offlineData));		
 			}
 		}
 	},
-	handleResult:function(id,data)
+	handleResult:function(id,callType,data)
 	{
 		if(id in COMMUNICATIONLINES.callbackHandler)
 		{
 			var arr = COMMUNICATIONLINES.callbackHandler[id];
-			(arr[1])(data['packages']);
+			var rawData = data['packages'];
+			var filterData = rawData;
+			switch(callType)
+			{
+				case 'filter':
+					filterData = COMMUNICATIONLINES.executeFilter(rawData,arr[0]['filterMap']);
+				break;
+			} 
+			(arr[1])(filterData);
 			delete COMMUNICATIONLINES.callbackHandler[id];
 		}
 	}

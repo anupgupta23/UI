@@ -1,9 +1,11 @@
   $(function() {
    
    init();
-   COMMUNICATIONLINES.applyFilters({'id':'offline'},onReceiveData);
+   COMMUNICATIONLINES.applyFilters({'id':'offline','filterMap':searchFiltersMap},onReceiveData);
     
   });
+
+  var searchFiltersMap = {};
 
   var init = function()
   {
@@ -24,6 +26,7 @@
 		      		suffix = "+ days";
 		      	}
 		        $( "#duration_val" ).val(  ui.values[ 0 ] + " to " + ui.values[ 1 ] + suffix);
+		     
 		      }
 		    });
 			var suffix = " days";
@@ -49,8 +52,10 @@
 		      		suffix = "+";
 		      	}
 		         $( "#budget_range_val" ).val(  "₹" + ui.values[ 0 ] + " to " + "₹" + ui.values[ 1 ] + suffix);
+		          searchFiltersMap["budget"] = [ui.values[ 0 ] ,ui.values[ 1 ] ];
 		      }
 		    });
+		    searchFiltersMap["budget"] = [budgetSelection[ 0 ] ,budgetSelection[ 1 ] ];
 			var suffix = "";
 	      	if( $( "#budget_slider_range" ).slider( "values", 1 ) == budgetRange[1])
 	      	{
@@ -75,7 +80,7 @@
 
 	  		// apply button initialization
 	  		 $('#filter_apply').on('click', function(e){
-	  		 	COMMUNICATIONLINES.applyFilters({'id':'offline'},onReceiveData);
+	  		 	COMMUNICATIONLINES.applyFilters({'id':'offline','filterMap':searchFiltersMap},onReceiveData);
 	  		 }
 	  		 );
 		});
