@@ -87,28 +87,11 @@
  margin: 0px;
 }
 
-.package_div_class .panel-heading 
-{
-  padding-left: 0px;
-  padding-right: 0px;
-}
 
-.package_div_class .panel-body 
-{
-  padding: 0px;
-}
-
-.package_div_class .panel-footer 
-{
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-bottom: 0px;
-  padding-top: 0px;
-}
 
 .package_div_disp_img_class
 {
-  width: 100%;
+  width: 95%;
   }
 
 

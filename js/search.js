@@ -1,7 +1,7 @@
   $(function() {
    
    init();
-   COMMUNICATIONLINES.applyFilters({},onReceiveData);
+   COMMUNICATIONLINES.applyFilters({'id':'offline'},onReceiveData);
     
   });
 
@@ -75,7 +75,7 @@
 
 	  		// apply button initialization
 	  		 $('#filter_apply').on('click', function(e){
-	  		 	COMMUNICATIONLINES.applyFilters({},onReceiveData);
+	  		 	COMMUNICATIONLINES.applyFilters({'id':'offline'},onReceiveData);
 	  		 }
 	  		 );
 		});
@@ -100,14 +100,15 @@
 
   var createPackageDiv = function(key,data)
   {
-  	var $pkgDiv = $("<div/>",{class:" col-sm-4 col-md-4 col-xs-12 panel panel-default package_div_class"});
-  	var $headerDiv = $("<div/>",{class:"panel-heading"});
-  	var $bodyDiv = $("<div/>",{class:"panel-body"});
-  	var $footer = $("<div/>",{class:"panel-footer"});
+  	var $pkgDiv = $("<div/>",{class:" col-sm-4 col-md-4 col-xs-12  left_search_nav package_div_class"});
+  	var $headerDiv = $("<div/>",{class:"package_header_div_class left_search_nav"});
+  	var $headeLabelName = $("<label/>",{text:data["destination"],class:"left_search_nav"});
+  	var $bodyDiv = $("<div/>",{class:"package_body_div_class"});
+  	var $footer = $("<div/>",{class:"package_footer_div_class left_search_nav"});
   	var $bodyImg =$("<img/>",{alt:data["label"],src:data["displayMapImg"],class:"package_div_disp_img_class"});
-  	var $labelName = $("<label/>",{text:data["label"],class:"left_search_nav"});
+  	var $labelName = $("<label/>",{text:data["label"],class:"pull-left left_search_nav"});
   	var $budget = $("<label/>",{text:data["budget"],class:"pull-right left_search_nav"});
-  	$headerDiv.append(data["destination"]);
+  	$headerDiv.append($headeLabelName);
   	$bodyDiv.append($bodyImg);
   	$footer.append($labelName);
   	$footer.append($budget);

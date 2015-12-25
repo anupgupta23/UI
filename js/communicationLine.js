@@ -1,10 +1,11 @@
 var COMMUNICATIONLINES =
 {
 	isOffline:false,
-	offlineData:{},
+	offlineData:undefined,
+	callbackHandler:{},
 	init:function()
 	{
-		console.log("init comm");
+
 		$.getJSON('config/commLines.json','application/json',function(data)
 		{
 			if('isOffline' in data)
@@ -16,7 +17,7 @@ var COMMUNICATIONLINES =
 				$.getJSON('offline/offlineData.json','application/json',function(data)
 				{
 					COMMUNICATIONLINES.offlineData = data;
-					console.log("offlineData comm"+COMMUNICATIONLINES.offlineData+":"+data);
+					COMMUNICATIONLINES.handleResult('offline',data);
 				});
 			}
 		});
@@ -30,14 +31,28 @@ var COMMUNICATIONLINES =
 	},
 	applyFilters:function(params,callback)
 	{
-		console.log("isOffline"+COMMUNICATIONLINES.isOffline);
-		console.log("offlineData"+COMMUNICATIONLINES.offlineData);
 		if(COMMUNICATIONLINES.isOffline)
 		{
-			var data =  COMMUNICATIONLINES.getOffline(params,'filter');
-			callback(data);
+			if(COMMUNICATIONLINES.offlineData != undefined)
+			{
+				var data =  COMMUNICATIONLINES.getOffline(params,'filter');
+				callback(data);	
+			}
+			else
+			{
+				COMMUNICATIONLINES.callbackHandler[params["id"]] = [params,callback];
+			}
 		}
 	},
+	handleResult:function(id,data)
+	{
+		if(id in COMMUNICATIONLINES.callbackHandler)
+		{
+			var arr = COMMUNICATIONLINES.callbackHandler[id];
+			(arr[1])(data['packages']);
+			delete COMMUNICATIONLINES.callbackHandler[id];
+		}
+	}
 	
 }
 
