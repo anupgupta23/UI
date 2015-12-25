@@ -1,13 +1,7 @@
-.headerPanel
-{
-  background:url(../resources/musafirBG.jpg) no-repeat center top scroll;
-  background-size: 100% auto;
-  padding-bottom: 50%;
-}
 
 .headerPanelContent
 {
-  padding: 50px 0 15px;
+  
   text-align: center;
 }
 
@@ -18,9 +12,8 @@
   font-size: 56px;
   color: #fff;
   letter-spacing: -1px;
-  margin: 0 auto 5px;
+  width: 100%;
   text-align: center;
-  width: 614px;
   display: block;
 
 }
@@ -32,5 +25,13 @@
   border: none;
   display: block;
   height: 4px;
-  width: 614px;
+  width: 100%;
 }
+
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 100%;
+     height: auto;
+     max-height: 535;
+
+    }
