@@ -94,4 +94,27 @@
   width: 95%;
   }
 
+.compare_label
+{
+  cursor: pointer;
+}
+
+.comparison-prompt.active {
+    bottom: -4px;
+    box-shadow: 0 0 15px #ccc;
+    transition: bottom 0.4s ease-in-out 0s;
+}
+
+.comparison-prompt {
+    background: white none repeat scroll 0 0;
+    border: 1px solid #51b9d7;
+    bottom: -150px;
+    color: #888;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    transition: bottom 0.4s ease-in-out 0s;
+    width: 330px;
+    z-index: 99;
+}
 

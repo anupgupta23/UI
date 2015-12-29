@@ -103,6 +103,11 @@
   	}
   }
 
+  var comparePackages = function(e)
+  {
+  	$('.comparison-prompt').addClass('active');
+  }
+
   var createPackageDiv = function(key,data)
   {
   	var $pkgDiv = $("<div/>",{class:" col-sm-4 col-md-4 col-xs-12  left_search_nav package_div_class"});
@@ -113,8 +118,11 @@
   	var $bodyImg =$("<img/>",{alt:data["label"],src:data["displayMapImg"],class:"package_div_disp_img_class"});
   	var $labelName = $("<label/>",{text:data["label"],class:"pull-left left_search_nav"});
   	var $budget = $("<label/>",{text:data["budget"],class:"pull-right left_search_nav"});
+  	var $compareLabel = $("<label/>",{text:"compare",class:"compare_label left_search_nav",id:key});
+  	$compareLabel.on('click',comparePackages);
   	$headerDiv.append($headeLabelName);
   	$bodyDiv.append($bodyImg);
+  	$footer.append($compareLabel);	
   	$footer.append($labelName);
   	$footer.append($budget);
   	$pkgDiv.append($headerDiv);
