@@ -6,6 +6,10 @@
   });
 
   var searchFiltersMap = {};
+  var compareMap = {
+    comparedPackagesID:{},
+    isCompareOn:false
+  };
 
   var init = function()
   {
@@ -105,7 +109,78 @@
 
   var comparePackages = function(e)
   {
-  	$('.comparison-prompt').addClass('active');
+    if($(e.currentTarget).hasClass('compare_label'))
+    {
+      $(e.currentTarget).removeClass('compare_label');
+      $(e.currentTarget).addClass('compare_label_active');
+      compareMap.comparedPackagesID[e.currentTarget.id] = true;
+    }
+    else
+    {
+      $(e.currentTarget).removeClass('compare_label_active');
+      $(e.currentTarget).addClass('compare_label');
+      delete compareMap.comparedPackagesID[e.currentTarget.id];
+    }
+    adjustComparePrompt();
+  }
+
+  var adjustComparePrompt = function()
+  {
+    if($.isEmptyObject(compareMap.comparedPackagesID))
+    {
+      $('.comparison-prompt').removeClass('active');
+    }
+    else
+    {
+      $('.comparison-prompt').addClass('active');
+      $('.compare-body').empty();
+      createComparisonDiv();
+    }
+  }
+
+  var deleteTourPackage = function(e)
+  {
+    var tourID = $(e.currentTarget).attr('data-id');
+    if(tourID != undefined)
+    {
+      $("#"+tourID).removeClass('compare_label_active');
+      $("#"+tourID).addClass('compare_label');
+      delete compareMap.comparedPackagesID[tourID];
+    }
+    adjustComparePrompt();
+  }
+
+  var createComparisonDiv = function()
+  {
+    var $label = $("<label/>",{id:'compare_label_text',text:"Compare Upto 5 tours"});
+      $('.compare-body').append($label);
+      var tourCount = 0;
+      for(var tourID in compareMap.comparedPackagesID)
+      {
+        if(tourID != undefined)
+        {
+          var tourData = COMMUNICATIONLINES.getTourData(tourID);
+          var $tourDiv =  $("<div/>",{class:"selectedTours"});
+          var $cross = $("<a/>",{class:"remove-row",'data-id':tourID});
+          $cross.append('x');
+          $cross.on('click',deleteTourPackage);
+          $tourDiv.append(tourData['label']);
+          $tourDiv.append($cross);
+          $('.compare-body').append($tourDiv);
+        }
+        tourCount++;
+      }
+      var $compareBtn = $('<button/>',{class:"btn  btn-success btn-xs pull-right",type:'button'});
+      $compareBtn.append('Compare');
+      if(tourCount < 2 || tourCount > 5)
+      {
+         $compareBtn.addClass('disabled');
+         $label.text('Please select more than one tour to use our compare feature.');
+      }
+      $('.compare_btn_container').empty();
+      $('.compare_btn_container').append($compareBtn);
+      $('#compare_tour_count').empty();
+      $('#compare_tour_count').append(tourCount);
   }
 
   var createPackageDiv = function(key,data)

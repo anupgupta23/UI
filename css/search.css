@@ -105,6 +105,25 @@
     transition: bottom 0.4s ease-in-out 0s;
 }
 
+.compare_label_active
+{
+  color: #51b9d7;
+  cursor: pointer;
+}
+
+.comparison-prompt .compare .compare-header {
+    background: #51b9d7 none repeat scroll 0 0;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 7px 5px 15px;
+    width: 100%;
+    line-height: 2;
+}
+
+.comparison-prompt .compare .compare-header>span{
+  margin-right: 25px;
+}
+
 .comparison-prompt {
     background: white none repeat scroll 0 0;
     border: 1px solid #51b9d7;
@@ -114,7 +133,30 @@
     position: fixed;
     right: 0;
     transition: bottom 0.4s ease-in-out 0s;
-    width: 330px;
+    max-width: 330px;
+    min-width: 250px;
     z-index: 99;
+}
+
+.selectedTours {
+    border-top: 1px dashed #ccc;
+    display: block;
+    font-size: 12px;
+    line-height: 1.6em;
+    padding: 5px 5px;
+    position: relative;
+    white-space: nowrap;
+}
+
+.selectedTours .remove-row {
+    background: rgba(0, 0, 0, 0.2) none repeat scroll 0 0;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1em;
+    padding: 2px 5px 3px;
+    position: absolute;
+    right: 0;
 }
 

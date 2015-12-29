@@ -22,6 +22,17 @@ var COMMUNICATIONLINES =
 			}
 		});
 	},
+	getTourData:function(id)
+	{
+		if(COMMUNICATIONLINES.isOffline && COMMUNICATIONLINES.offlineData!=undefined)
+		{
+			if(id in COMMUNICATIONLINES.offlineData['packages'])
+			{
+				return (COMMUNICATIONLINES.offlineData['packages'])[id];
+			}
+		}
+		return null;
+	},
 	executeFilter:function(data,filterMap)
 	{
 		var newData = data;

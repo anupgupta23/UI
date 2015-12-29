@@ -5,7 +5,7 @@
 	"durationRange":[0,45],
 	"durationSelection":[0,45],
 	"budgetRange":[5000,500000],
-	"budgetSelection":[10000,100000],
+	"budgetSelection":[5000,500000],
 	"filters":{
 		"destnation":{
 			"label" : "Destination",
