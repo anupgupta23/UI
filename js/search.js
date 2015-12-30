@@ -89,11 +89,7 @@
 	  		 }
 	  		 );
 
-         //compare button initialization
-         $('#compare_window_close_button').on('click',function(e){
-              $('#search_body_view').removeClass('hidden');
-              $('#compare_window').addClass('hidden');
-         });
+       
 		});
 
   }
@@ -198,7 +194,18 @@
   {
     $('#search_body_view').addClass('hidden');
     $('#compare_window').removeClass('hidden');
-      $('#compare_window').empty();
+    $('#compare_window_body').empty();
+    var $topDiv = $('<div/>',{id:'compare_window_body',class:"row"});
+    var $topLabel = $('<label/>',{class:"pull-left",text:"Tour Comparison"});
+    var $topSpan = $('<span/>',{id:"compare_window_close_button",class:"left_search_nav glyphicon glyphicon-remove pull-right"});
+    $topDiv.append($topLabel);
+    $topDiv.append($topSpan);
+      //compare button initialization
+    $topSpan.on('click',function(e){
+              $('#search_body_view').removeClass('hidden');
+              $('#compare_window').addClass('hidden');
+         });
+    $('#compare_window_body').append($topDiv);
     var compareParam = ['Selected Tours','Map'];
     for(var index=0;index<compareParam.length;index++)
     {
