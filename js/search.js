@@ -8,7 +8,8 @@
   var searchFiltersMap = {};
   var compareMap = {
     comparedPackagesID:{},
-    isCompareOn:false
+    isCompareOn:false,
+    count:0
   };
 
   var init = function()
@@ -87,6 +88,12 @@
 	  		 	COMMUNICATIONLINES.applyFilters({'id':'offline','filterMap':searchFiltersMap},onReceiveData);
 	  		 }
 	  		 );
+
+         //compare button initialization
+         $('#compare_window_close_button').on('click',function(e){
+              $('#search_body_view').removeClass('hidden');
+              $('#compare_window').addClass('hidden');
+         });
 		});
 
   }
@@ -114,12 +121,14 @@
       $(e.currentTarget).removeClass('compare_label');
       $(e.currentTarget).addClass('compare_label_active');
       compareMap.comparedPackagesID[e.currentTarget.id] = true;
+      compareMap.count++;
     }
     else
     {
       $(e.currentTarget).removeClass('compare_label_active');
       $(e.currentTarget).addClass('compare_label');
       delete compareMap.comparedPackagesID[e.currentTarget.id];
+        compareMap.count--;
     }
     adjustComparePrompt();
   }
@@ -146,13 +155,14 @@
       $("#"+tourID).removeClass('compare_label_active');
       $("#"+tourID).addClass('compare_label');
       delete compareMap.comparedPackagesID[tourID];
+      compareMap.count--;
     }
     adjustComparePrompt();
   }
 
   var createComparisonDiv = function()
   {
-    var $label = $("<label/>",{id:'compare_label_text',text:"Compare Upto 5 tours"});
+    var $label = $("<label/>",{id:'compare_label_text',text:"Compare Upto 4 tours"});
       $('.compare-body').append($label);
       var tourCount = 0;
       for(var tourID in compareMap.comparedPackagesID)
@@ -172,7 +182,8 @@
       }
       var $compareBtn = $('<button/>',{class:"btn  btn-success btn-xs pull-right",type:'button'});
       $compareBtn.append('Compare');
-      if(tourCount < 2 || tourCount > 5)
+      $compareBtn.on('click',compareClickHandler);
+      if(tourCount < 2 || tourCount > 4)
       {
          $compareBtn.addClass('disabled');
          $label.text('Please select more than one tour to use our compare feature.');
@@ -181,6 +192,52 @@
       $('.compare_btn_container').append($compareBtn);
       $('#compare_tour_count').empty();
       $('#compare_tour_count').append(tourCount);
+  }
+
+  var compareClickHandler = function()
+  {
+    $('#search_body_view').addClass('hidden');
+    $('#compare_window').removeClass('hidden');
+      $('#compare_window').empty();
+    var compareParam = ['Selected Tours','Map'];
+    for(var index=0;index<compareParam.length;index++)
+    {
+      var $rowDiv = $('<div/>',{class:"row row-eq-height"});
+      var $column0 = $('<div/>',{class:"left_search_nav compare_column col-md-2"});
+      if(index == 0)
+      {
+        $column0.addClass('compare_header_column');
+        $column0.removeClass('compare_column');
+     }
+      $column0.append(compareParam[index]);
+      $rowDiv.append($column0);
+      for(var tourID in compareMap.comparedPackagesID)
+      {
+        var tourData = COMMUNICATIONLINES.getTourData(tourID);
+        if(index==0)
+        {
+          var $column = $('<div/>',{class:"compare_header_column col-md-3"});
+          var $labelDiv = $('<div/>',{class:"left_search_nav"});
+          $labelDiv.append(tourData['label']);
+          $column.append($labelDiv);
+          var $budgetDiv =  $('<div/>',{class:"left_search_nav"});
+           $budgetDiv.append(tourData['budget']);
+          $column.append($budgetDiv);
+          $rowDiv.append($column);
+        }
+        else
+        {
+          var $column = $('<div/>',{class:"compare_column col-md-3"});
+          if(compareParam[index] == 'Map')
+          {
+            var $bodyImg =$("<img/>",{alt:tourData["label"],src:tourData["displayMapImg"],class:"package_div_disp_img_class"});
+            $column.append($bodyImg);
+          }
+          $rowDiv.append($column);
+        }
+      }
+      $('#compare_window_body').append($rowDiv);
+    }
   }
 
   var createPackageDiv = function(key,data)
@@ -201,9 +258,9 @@
   	$footer.append($labelName);
   	$footer.append($budget);
   	$pkgDiv.append($headerDiv);
-	$pkgDiv.append($bodyDiv);
-	$pkgDiv.append($footer);
-	return $pkgDiv;
+  	$pkgDiv.append($bodyDiv);
+  	$pkgDiv.append($footer);
+  	return $pkgDiv;
   }
 
   var createHeaderDiv = function(key,label)

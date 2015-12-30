@@ -160,3 +160,22 @@
     right: 0;
 }
 
+.compare_header_column
+{
+  background-color: #62686c;
+  color: #fff;
+  font-size: 12px;
+}
+
+
+#compare_window_close_button
+{
+  cursor: pointer;
+}
+
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
