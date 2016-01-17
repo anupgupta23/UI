@@ -1,6 +1,6 @@
 var COMMUNICATIONLINES =
 {
-	isOffline:false,
+	isOffline:true,
 	offlineData:undefined,
 	callbackHandler:{},
 	init:function()

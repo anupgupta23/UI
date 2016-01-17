@@ -179,3 +179,9 @@
   display: -ms-flexbox;
   display: flex;
 }
+
+.filter_bar_class
+{
+  background-color: #f1f1f1;
+  padding-top: 20px;
+}
